@@ -24,9 +24,10 @@ sudo ${PYTHON} -m pip install --target ${SITE_PACKAGES} -Ur requirements.txt
 # Install both Unicorn and Capstone
 for directory in capstone unicorn; do
     pushd $directory
+    ./make.sh
     sudo UNICORN_QEMU_FLAGS="--python=$(which python2)" ./make.sh install
     cd bindings/python
-    sudo ${PYTHON} -m pip install --target ${SITE_PACKAGES} .
+    sudo ${PYTHON} setup.py install
     popd
 done
 
